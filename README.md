@@ -46,6 +46,20 @@ Checking what is in list:
 
 can get properties of object added, so use length of list to get the current item added, and return that as success message. Other info can be printed out as well.
 
+
+## Data validation
+forms.py: Set quantity to integer field, and add a NumberRange validator with min=1
+	
+	quantity = IntegerField('quantity', validators=[NumberRange(min=1,message="Enter integer"),DataRequired()])
+
+added else condition for form validation failing, and print out errors.
+
+	def flash_errors(form):
+		"""Flashes form errors"""
+		print(form.errors)
+
+Need to implement error message on same page...
+
 --------------------------------------------------------------------------------------------------------
 
 

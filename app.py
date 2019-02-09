@@ -1,7 +1,7 @@
 import datetime
 import os
 
-from flask import Flask, render_template, redirect, url_for
+from flask import Flask, render_template, redirect, url_for, flash
 from forms import ItemForm
 from models import Items
 from database import db_session
@@ -18,6 +18,8 @@ def add_item():
 		db_session.add(item)
 		db_session.commit()
 		return redirect(url_for('success'))
+	else:
+		flash_errors(form)
 	return render_template('index.html', form=form)
 
 @app.route("/success")
@@ -35,6 +37,9 @@ def success():
 
 	return success_string
 
+def flash_errors(form):
+	"""Flashes form errors"""
+	print(form.errors)
 
 if __name__ == '__main__':
 	app.run(host='0.0.0.0',port=5001)
