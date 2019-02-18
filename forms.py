@@ -4,6 +4,6 @@ from wtforms.validators import DataRequired, NumberRange
 
 class ItemForm(FlaskForm):
     name = StringField('name', validators=[DataRequired()])
-    quantity = IntegerField('quantity', validators=[NumberRange(min=1,message="Enter integer"),DataRequired()])
+    quantity = IntegerField('quantity', validators=[NumberRange(min=1,message="Enter integer")])
     description = StringField('description', validators=[DataRequired()])
 

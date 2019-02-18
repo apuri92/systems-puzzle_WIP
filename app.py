@@ -18,8 +18,6 @@ def add_item():
 		db_session.add(item)
 		db_session.commit()
 		return redirect(url_for('success'))
-	else:
-		flash_errors(form)
 	return render_template('index.html', form=form)
 
 @app.route("/success")
@@ -29,6 +27,11 @@ def success():
 	qry = db_session.query(Items)
 	results = qry.all()
 
+#	print("------ Start ------")
+#	for i in results:
+#		print (i.name)
+#	print("------ End ------")
+#	
 	current_itr = len(results)-1
 	name_added = results[current_itr].name
 	quant_added = str(results[current_itr].quantity)
@@ -37,9 +40,6 @@ def success():
 
 	return success_string
 
-def flash_errors(form):
-	"""Flashes form errors"""
-	print(form.errors)
 
 if __name__ == '__main__':
 	app.run(host='0.0.0.0',port=5001)

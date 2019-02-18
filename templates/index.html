@@ -7,6 +7,9 @@
             {{ form.csrf_token }}
             {{ form.name.label }} {{ form.name(size=20) }}
             {{ form.quantity.label }} {{ form.quantity(size=4) }}
+            {% if form.quantity.errors %}
+                    <ul class="errors">{% for error in form.quantity.errors %}<span style="color: red;"><li>[{{ error }}]</span></li>{% endfor %}</ul>
+                {% endif %}
             {{ form.description.label }} {{ form.description(size=4) }}
             <input type="submit" value="Enter Item">
         </form>
